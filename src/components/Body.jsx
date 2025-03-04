@@ -1,19 +1,28 @@
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import Header from "./Header";
 import RestaurantCard from "./RestaurantCard";
 import { restaurants } from "../utils/mockData";
+import Search from "./Search";
+
 function Body(){
+    const [filteredRestaurants,setFilteredRestants]=useState(restaurants)
+  
+    function filterRestaurants(filterRestaurants){
+        setFilteredRestants(filterRestaurants);
+
+    }
     
 
 
     return(
         <>
             <Header></Header>
-        <div className="flex flex-wrap">
-        {restaurants.map((res)=>
-                <RestaurantCard details={res}/>
-            )}
-        </div>
+            <Search filterFun={filterRestaurants}/>
+            <div className="flex flex-wrap">
+            {filteredRestaurants.map((res)=>
+                    <RestaurantCard details={res}/>
+                )}
+            </div>
             
         </>
     );

@@ -3,12 +3,19 @@ import Header from "./Header";
 import RestaurantCard from "./RestaurantCard";
 import { restaurants } from "../utils/mockData";
 import Search from "./Search";
-
+import TopRatedRestaurants from "./TopRatedRestaurants";
 function Body(){
     const [filteredRestaurants,setFilteredRestants]=useState(restaurants)
   
     function filterRestaurants(filterRestaurants){
         setFilteredRestants(filterRestaurants);
+
+    }
+    function filterTopRatedRestaurants(){
+        const topRatedRestaurants=filteredRestaurants.filter(
+            (res) => res.rating > 4
+        );
+        setFilteredRestants(topRatedRestaurants);
 
     }
     
@@ -17,7 +24,8 @@ function Body(){
     return(
         <>
             <Header></Header>
-            <Search filterFun={filterRestaurants}/>
+            <Search filterFunc={filterRestaurants} />
+            <TopRatedRestaurants topRatedFunc={filterTopRatedRestaurants} />
             <div className="flex flex-wrap">
             {filteredRestaurants.map((res)=>
                     <RestaurantCard details={res}/>

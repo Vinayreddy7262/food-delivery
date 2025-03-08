@@ -9,7 +9,7 @@ function Search(props){
             res.name.toLowerCase().includes(searchText.toLowerCase())
         );
 
-        props.filterFun(filteredRestaurants);
+        props.filterFunc(filteredRestaurants);
         
 
     }
